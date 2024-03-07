@@ -1,2 +1,2 @@
 # marginal-gains
-Seeking, validating, forecasting marginal gain in cycling.
+Seeking, validating, and forecasting marginal gains in cycling.
