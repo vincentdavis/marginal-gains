@@ -8,7 +8,7 @@ main_menu()
 
 st.markdown("""### Performance modeling, metrics and charts\n
 #### Critical Power\n
-- __Ramp Test:__ _Convert a power profile to a ramp test workout_\n
+- __Create Ramp Test:__ _Convert a power profile to a ramp test workout_\n
 """)
 
 

@@ -2,13 +2,15 @@ import plotly.express as px
 import streamlit as st
 from cycling_dynamics.critical_power import make_zwo_from_ramp, ramp_test_activity
 
+from menus import main_menu
+
 st.set_page_config(
-    page_title="Worst Ramp Ever",
+    page_title="Create Ramp Test",
     page_icon="\u1F6B2",
     layout="wide",
     initial_sidebar_state="auto",
 )
-
+main_menu()
 """
 ## The Worst Ramp Test Ever
 For questions or comments, contact me on Discord: [Vincent.Davis](discordapp.com/users/vincent.davis)
