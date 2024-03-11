@@ -73,7 +73,7 @@ if submit:
     with st.spinner("Processing..."):
         profile = prof.split("\n")
         profile = [x.split(",") for x in profile]
-        profile = [(int(x[0]), int(x[1])) for x in profile]
+        profile = {int(x[0]): int(x[1]) for x in profile}
         print(profile)
         df, dfwko = ramp_test_activity(profile, ftp=ftp)
         wko1 = make_zwo_from_ramp(dfwko, filename=None, name=f"{name}_ftp_{ftp}", ftp=ftp)
