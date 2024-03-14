@@ -53,7 +53,7 @@ if submit_button:
         st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 
         total_cp, cp_df = get_critical_power_intensity(df, cp=None)
-        st.markdown(f"### Critical Power Activity Intensity: {total_cp:.0f}%")
+        st.markdown(f"### Critical Power Activity Intensity: {total_cp*100:.1f}%")
         cp_df["seconds"] = cp_df.index + 1
         df_with_cp = df.merge(cp_df, on="seconds")
         st.download_button(
