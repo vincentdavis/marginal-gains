@@ -6,7 +6,7 @@ from cycling_dynamics.plots import plot_activity_critical_power, plot_critical_p
 from menus import main_menu
 
 st.set_page_config(
-    page_title="Create Ramp Test",
+    page_title="Critical Power",
     page_icon="\u1f6b2",
     layout="wide",
     initial_sidebar_state="auto",
