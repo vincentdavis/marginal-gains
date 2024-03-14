@@ -9,6 +9,5 @@ main_menu()
 st.markdown("""### Performance modeling, metrics and charts\n
 #### Critical Power\n
 - __Create Ramp Test:__ _Convert a power profile to a ramp test workout_\n
+- __Critical Power:__ _Calculate the Critical Power curve and CP intensity_\n
 """)
-
-
