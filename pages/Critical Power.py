@@ -1,3 +1,4 @@
+import plotly.express as px
 import streamlit as st
 from cycling_dynamics import load_data
 from cycling_dynamics.critical_power import critical_power, get_critical_power_intensity
@@ -64,3 +65,7 @@ if submit_button:
         )
         fig2 = plot_critical_power_intensity(cp_df)
         st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
+
+        cp["end-start"] = cp["cp"] + cp["slope"]
+        fig3 = px.line(cp, x="seconds", y=["cp", "end-start"], title="Critical Power with end-start power split")
+        st.plotly_chart(fig3, theme="streamlit", use_container_width=True)
