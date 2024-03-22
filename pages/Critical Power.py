@@ -1,7 +1,7 @@
 import plotly.express as px
 import streamlit as st
 from cycling_dynamics import load_data
-from cycling_dynamics.critical_power import critical_power, get_critical_power_intensity
+from cycling_dynamics.critical_power import CriticalPower
 from cycling_dynamics.plots import plot_activity_critical_power, plot_critical_power_intensity
 
 from menus import main_menu
@@ -43,29 +43,32 @@ if submit_button:
         )
 
         st.markdown("### Critical Power Curve with Standard Deviation")
-        cp = critical_power(df)["df"]
         st.download_button(
             label="Download csv of CP data",
             data=df.to_csv(index=False).encode("utf-8"),
             file_name="Critical_Power.csv",
             mime="text/csv",
         )
-        fig1 = plot_activity_critical_power(cp)
+        cp = CriticalPower(df)
+        cp.calculate_cp()
+        fig1 = plot_activity_critical_power(cp.cp_df)
         st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 
-        total_cp, cp_df = get_critical_power_intensity(df, cp=None)
+        total_cp, cp_df = cp.cp_intensity()
         st.markdown(f"### Critical Power Activity Intensity: {total_cp*100:.1f}%")
         cp_df["seconds"] = cp_df.index + 1
-        df_with_cp = df.merge(cp_df, on="seconds")
+        df_with_cp = cp.cp_df.merge(cp_df, on="seconds")
         st.download_button(
             label="Download csv of FIT with CP_intensity",
             data=df_with_cp.to_csv(index=False).encode("utf-8"),
             file_name="CP_Intensity.csv",
             mime="text/csv",
         )
-        fig2 = plot_critical_power_intensity(cp_df)
+        fig2 = plot_critical_power_intensity(df_with_cp)
         st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
-        cp["end-start"] = cp["cp"] + cp["slope"]
-        fig3 = px.line(cp, x="seconds", y=["cp", "end-start"], title="Critical Power with end-start power split")
+        df_with_cp["end-start"] = df_with_cp["cp"] + df_with_cp["slope"]
+        fig3 = px.line(
+            df_with_cp, x="seconds", y=["cp", "end-start"], title="Critical Power with end-start power split"
+        )
         st.plotly_chart(fig3, theme="streamlit", use_container_width=True)

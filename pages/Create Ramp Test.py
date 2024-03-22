@@ -1,12 +1,12 @@
 import plotly.express as px
 import streamlit as st
-from cycling_dynamics.critical_power import make_zwo_from_ramp, ramp_test_activity
+from cycling_dynamics.critical_power import CriticalPower
 
 from menus import main_menu
 
 st.set_page_config(
     page_title="Create Ramp Test",
-    page_icon="\u1F6B2",
+    page_icon="\u1f6b2",
     layout="wide",
     initial_sidebar_state="auto",
 )
@@ -74,11 +74,11 @@ if submit:
         profile = prof.split("\n")
         profile = [x.split(",") for x in profile]
         profile = {int(x[0]): int(x[1]) for x in profile}
-        # print(profile)
-        df, dfwko = ramp_test_activity(profile, ftp=ftp)
-        wko1 = make_zwo_from_ramp(dfwko, filename=None, name=f"{name}_ftp_{ftp}", ftp=ftp)
-        wko2 = make_zwo_from_ramp(dfwko, filename=None, name=f"{name}_ftp_1", ftp=1)
-        wko_user = make_zwo_from_ramp(dfwko, filename=None, name=f"{name}_ftp_1", ftp=None)
+        cp = CriticalPower(cp_user=profile)
+        df, df_wko = cp.ramp_test_activity(ftp=ftp)
+        wko1 = cp.make_zwo_from_ramp(df_wko, filename=None, name=f"{name}_ftp_{ftp}", ftp=ftp)
+        wko2 = cp.make_zwo_from_ramp(df_wko, filename=None, name=f"{name}_ftp_1", ftp=1)
+        wko_user = cp.make_zwo_from_ramp(df_wko, filename=None, name=f"{name}_ftp_1", ftp=None)
 
         st.download_button(
             label="Full data as CSV",
@@ -87,21 +87,21 @@ if submit:
             mime="text/csv",
         )
         st.download_button(
-            label=f"Download WKO with ftp set to {ftp}",
+            label=f"Download WKO with FTP set to {ftp}",
             data=wko1.encode("utf-8"),
             file_name=f"ramp_test_{name}_ftp_{ftp}.zwo",
             mime="text/csv",
         )
         st.download_button(
-            label="Download WKO with ftp set to 1",
+            label="Download WKO with FTP set to 1",
             data=wko2.encode("utf-8"),
-            file_name=f"ramp_test_{name}_ftp_1.zwo",
+            file_name=f"ramp_test_{name}FTP.zwo",
             mime="text/csv",
         )
         st.download_button(
-            label="Download WKO with ftp set to in game ftp",
+            label="Download WKO with FTP set to in game FTP",
             data=wko_user.encode("utf-8"),
-            file_name=f"ramp_test_{name}_ftp_user.zwo",
+            file_name=f"ramp_test_{name}_FTP_user.zwo",
             mime="text/csv",
         )
 
