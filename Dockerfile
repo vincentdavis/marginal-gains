@@ -7,7 +7,7 @@ ENTRYPOINT ["top", "-b"]
 
 
 # Set working directory
-WORKDIR /app
+# WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -17,11 +17,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements.txt and install dependencies
-COPY requirements.txt ./
+COPY . .
 RUN pip install --no-cache -r requirements.txt
-
-# Copy your Streamlit app code
-COPY . ./
 
 # Expose Streamlit port (default: 8501)
 EXPOSE 8501
