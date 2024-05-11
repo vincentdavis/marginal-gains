@@ -9,4 +9,4 @@ ruff==0.4.4
 watchdog>=4.0.0
 pur==7.3.1
 plotly==5.22.0
-cycling-dynamics==0.0.10
+cycling-dynamics>=0.0.7
