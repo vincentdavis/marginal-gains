@@ -4,7 +4,7 @@
         "builder": "NIXPACKS"
     },
     "deploy": {
-                "startCommand": "streamlit run Marginal_Gains.py --server.address 0.0.0.0 --server.port 8501 --server.fileWatcherType none --browser.gatherUsageStats false --client.toolbarMode minimal"
+                "startCommand": "streamlit run Marginal_Gains.py --server.address 0.0.0.0 --server.port $PORT --server.fileWatcherType none --browser.gatherUsageStats false --client.toolbarMode minimal"
     }
 
 }
