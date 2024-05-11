@@ -12,7 +12,7 @@ WORKDIR ./
 # Copy requirements.txt and install dependencies
 COPY requirements.txt ./
 RUN pip install --upgrade pip
-RUM  pip install uv
+RUN  pip install uv
 RUN uv pip install -r requirements.txt
 
 # Copy your Streamlit app code
