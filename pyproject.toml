@@ -1,1 +1,66 @@
+[project]
+name = "app-gotta-bike"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "cycling-dynamics>=2025.4.0",
+    "fitdecode>=0.10.0",
+    "numpy>=2.2.4",
+    "pandas>=2.2.3",
+    "plotly>=6.0.1",
+    "scipy>=1.15.2",
+    "streamlit>=1.44.0",
+]
+
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    # flake8-bugbear
+    "B",
+    # pydocstyle
+    #"D",
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    "FLY",
+    # isort
+    "I",
+    # pyupgrade
+    "UP",
+    # flake8-simplify
+    "SIM",
+    # Django
+    "DJ",
+    # Ruff
+    "RUF",
+]
+ignore = []
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "ruff>=0.11.2",
+    "watchdog>=6.0.0",
+]
 

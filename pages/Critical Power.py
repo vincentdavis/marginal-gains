@@ -1,6 +1,8 @@
 import plotly.express as px
 import streamlit as st
 from cycling_dynamics import load_data
+
+# from cycling_dynamics import load_data
 from cycling_dynamics.critical_power import CriticalPower
 from cycling_dynamics.plots import plot_activity_critical_power, plot_critical_power_intensity
 
@@ -55,7 +57,7 @@ if submit_button:
         st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 
         total_cp, cp_df = cp.cp_intensity()
-        st.markdown(f"### Critical Power Activity Intensity: {total_cp*100:.1f}%")
+        st.markdown(f"### Critical Power Activity Intensity: {total_cp * 100:.1f}%")
         cp_df["seconds"] = cp_df.index + 1
         df_with_cp = cp.cp_df.merge(cp_df, on="seconds")
         st.download_button(
