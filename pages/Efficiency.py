@@ -5,7 +5,7 @@ from menus import main_menu
 from plots import plot_kph_100np_vs_distance, plot_kph_100watts_vs_distance
 
 st.set_page_config(
-    page_title="Create Ramp Test",
+    page_title="Efficiency",
     page_icon="\u1f6b2",
     layout="wide",
     initial_sidebar_state="auto",

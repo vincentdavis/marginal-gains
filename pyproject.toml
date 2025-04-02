@@ -4,13 +4,13 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.13"
 dependencies = [
-    "cycling-dynamics>=2025.4.0",
+    "cycling-dynamics>=2025.4.1",
     "fitdecode>=0.10.0",
     "numpy>=2.2.4",
     "pandas>=2.2.3",
     "plotly>=6.0.1",
     "scipy>=1.15.2",
-    "streamlit>=1.44.0",
+    "streamlit>=1.44.1",
 ]
 
 
